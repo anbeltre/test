@@ -1,0 +1,26 @@
+name: Ubuntu - RustDesk
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Start Building...
+    runs-on: ubuntu-latest
+    timeout-minutes: 9999
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Downloading & Installing Essentials
+        run: |
+          curl -L -o Downloads.sh "https://cariocard-my.sharepoint.com/:u:/g/personal/jflores_carioca_com_do/EVryoevmnWVJjr2ZWYw_CDgBUvrXuu-EiIHk02I1MllhZQ?e=TtEtEh"
+          chmod +x Downloads.sh
+          ./Downloads.sh
+
+      - name: Log In To AnyDesk
+        run: ./show.sh
+
+      - name: Time Counter
+        run: python3 time.py
